@@ -22,7 +22,7 @@ namespace qh
 		{
 			len_ = strlen(s);
 			data_ = new char[len_ + 1];
-			strcpy_s(data_, len_ + 1, s);
+			strcpy(data_, s);
 		}
 	}
 
@@ -45,7 +45,8 @@ namespace qh
 			else
 			{
 				data_ = new char[len_ + 1];
-				strncpy_s(data_, len_ + 1, s, len);
+				strncpy(data_, s, len);
+				data_[len] = 0;
 				len_ = strlen(data_);
 			}
 		}
@@ -62,7 +63,7 @@ namespace qh
 		{
 			len_ = rhs.len_;
 			data_ = new char[len_ + 1];
-			strcpy_s(data_, len_ + 1, rhs.data_);
+			strcpy(data_, rhs.data_);
 		}
 
 	}
@@ -74,7 +75,7 @@ namespace qh
 			delete[] data_;
 			len_ = rhs.len_;
 			data_ = new char[len_ + 1];
-			strcpy_s(data_, len_ + 1, rhs.data_);
+			strcpy(data_, rhs.data_);
 		}
 		return *this;
 	}
@@ -94,7 +95,7 @@ namespace qh
 		if (data_==NULL)
 			return NULL;
 		char *rt = new char[len_ + 1]();
-		memcpy_s(rt, len_ + 1, data_, len_ + 1);
+		memcpy(rt, data_, len_ + 1);
 		return rt;
 	}
 
@@ -104,7 +105,7 @@ namespace qh
 			return NULL;
 		int len = strlen(data_);
 		char *rt = new char[len + 1]();
-		strcpy_s(rt, len + 1, data_);
+		strcpy(rt, data_);
 		return rt;
 	}
 
@@ -117,3 +118,4 @@ namespace qh
 		return NULL;
 	}
 }
+

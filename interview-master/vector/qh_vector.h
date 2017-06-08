@@ -1,5 +1,5 @@
-#include<exception>
-
+#include<assert.h>
+#include<string.h>
 #ifndef QIHOO_VECTOR_H_
 #define QIHOO_VECTOR_H_
 
@@ -65,10 +65,7 @@ namespace qh
 			{
 				return data_[index];
 			}
-			else
-			{
-				throw new std::exception("下标越界");
-			}
+			assert(false);
 		}
 
 		// set
@@ -82,6 +79,7 @@ namespace qh
 		}
 		void pop_back()
 		{
+			assert(size_ > 0);
 			size_--;
 		}
 		void resize(size_t newSize)
@@ -127,5 +125,6 @@ namespace qh
 }
 
 #endif
+
 
 

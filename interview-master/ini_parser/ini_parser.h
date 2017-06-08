@@ -3,7 +3,7 @@
 
 #include <string>
 #include <map>
-#include <cassert>
+#include <assert.h>
 #include <fstream>
 
 namespace qh
@@ -43,7 +43,8 @@ namespace qh
 		void SkipStr(std::string& data, size_t& beg, const std::string& trimStr);
 		size_t FindLineEnd(std::string& data, const size_t& beg, const std::string& line_seperator = "\n");
 		void ParseLine(std::string& line, const std::string key_value_seperator = "=");
-
+		void Trim(std::string& line, const std::string trimStr);
+	
 		typedef std::map<std::string, std::string> KeyValues;
 		std::map<std::string, KeyValues> configs;
 		std::string curSessions;
@@ -51,4 +52,5 @@ namespace qh
 }
 
 #endif
+
 

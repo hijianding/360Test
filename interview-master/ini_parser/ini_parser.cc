@@ -4,21 +4,31 @@ namespace qh
 {
 	INIParser::INIParser()
 	{
+		curSessions = "";
 		configs[curSessions];
 	}
 	INIParser::~INIParser()
-	{}
+	{
+	}
 	bool INIParser::Parse(const std::string& ini_file_path)
 	{
-		std::ifstream infs(ini_file_path);
-		if (!infs)
-			throw new std::exception();
+		std::ifstream infs(ini_file_path.c_str());
+		assert(infs);
 		std::string line;
 		while (!infs.eof())
 		{
 			try
 			{
 				std::getline(infs, line);
+				if (line.size() <= 0)
+					continue;
+				//去除行尾换行符号
+				size_t index = line.size() - 1;
+				while (line[index] == '\n' || line[index] == '\r')
+				{	
+					line = line.substr(0, index);
+					index--;
+				}
 				ParseLine(line);
 			}
 			catch (std::exception ex)
@@ -108,9 +118,11 @@ namespace qh
 
 	void INIParser::ParseLine(std::string& line, const std::string key_value_seperator)
 	{
-		//clean space 
+		std::string trimStr = " \t";
 
-		//�ж��Ƿ���[session]��־
+		Trim(line, trimStr);
+
+		//判断是否是[session]标志
 		size_t beg = line.find('[');
 		if (beg != line.npos&&beg == 0)
 		{
@@ -130,12 +142,32 @@ namespace qh
 			{
 				return;
 			}
+			
 			std::string key;
 			std::string val;
+			
+
 			key.assign(&line[0], &line[mid]);
+			//skip space and \t in key
+			Trim(key, trimStr);
+
 			mid += key_value_seperator.size();
 			val.assign(&line[mid]);
+			//skip space and \t in val
+			Trim(val, trimStr);
+
 			configs[curSessions][key] = val;
+		}
+	}
+
+	void INIParser::Trim(std::string& line, const std::string trimStr)
+	{
+		if (line.empty())
+			return;
+		else
+		{
+			line.erase(0, line.find_first_not_of(trimStr));
+			line.erase(line.find_last_not_of(trimStr) + 1);
 		}
 	}
 }

@@ -108,7 +108,7 @@ namespace qh
 			key = token.nextString('=');
 			//bug修复：在获得的带有‘&’的key的基础上，截取最后一个‘&’之后的字符串作为新的key
 			int pos = key.rfind('&');
-			if (pos!=-1)
+			if (pos!=key.npos)
 			{
 				key = key.substr(pos + 1);
 			}

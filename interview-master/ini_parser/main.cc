@@ -59,7 +59,7 @@ void test3()
 
 void test4()
 {
-	const char* ini_text = "||[s1]||a:1||b:2||b=3||c:3||d=4|||||e:5||[s2]||a:2";
+	const char* ini_text = "||[s1]||a:1||b:2||b=3||c:3||d=4|||||e:5||[[s2]||a:2";
 	qh::INIParser parser;
 	if (!parser.Parse(ini_text, strlen(ini_text), "||", ":")) {
 		assert(false);
@@ -72,17 +72,35 @@ void test4()
 	assert(b == "");
 
 	const std::string& c = parser.Get("s2","a", NULL);
-	assert(c == "2");
+	assert(c == "");
 }
 
 void test5()
 {
-	const char* ini_file_path = "c:/test.txt";
+	const char* ini_text = "||		 [s1]	||    a  : 1	||b	:	2||b	=3||	c	:	3||d=4||	  ||	e:5||[[s2]||a:2";
+	qh::INIParser parser;
+	if (!parser.Parse(ini_text, strlen(ini_text), "||", ":")) {
+		assert(false);
+	}
+
+	const std::string& a = parser.Get("s1", "a", NULL);
+	assert(a == "1");
+
+	std::string b = parser.Get("b", NULL);
+	assert(b == "");
+
+	const std::string& c = parser.Get("s2", "a", NULL);
+	assert(c == "");
+}
+
+void test6()
+{
+	const char* ini_file_path = "./test.txt";
 	qh::INIParser parser;
 	if (!parser.Parse(ini_file_path)) {
 		assert(false);
 	}
-
+			
 	const std::string& a = parser.Get("s1", "a", NULL);
 	assert(a == "");
 
@@ -103,7 +121,11 @@ int main(int argc, char* argv[])
 
 	test4();
 	test5();
+	test6();
+
+	printf("it is ok!\n");
 	return 0;
 }
+
 
 

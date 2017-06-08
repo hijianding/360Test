@@ -1,3 +1,18 @@
+## 问题回答 ##
+
+- 时间复杂度
+
+O(n)
+
+- 空间复杂度
+
+O(m) m<n
+
+- 是否有资源泄露
+
+无
+
+## 解决bug ##
 - bug1
 
 用例："http://www.microsofttranslator.com/bv.aspx?from=&to=zh-chs&xxx&query=http://hnujug.com/"
