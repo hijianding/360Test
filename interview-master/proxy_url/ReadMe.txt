@@ -1,4 +1,27 @@
-﻿# 程序报告请看根目录下的report.md #
+﻿## Introduction ##
+
+- 该程序在原本提供的程序上，通过调试，找到了通不过的测试用例，并修复了bug
+- 具体的测试报告，请参照根目录下的report.md
+- 由于自带的Makefile没有问题，所以没有修改Makefile
+
+## Environment ##
+
+- ubuntu 14.04
+- g++ (Ubuntu 4.8.4-2ubuntu1~14.04.3) 4.8.4
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 程序报告请看根目录下的report.md #
 
 该项目是一道简单的面试题。
 

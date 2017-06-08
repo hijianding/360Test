@@ -1,4 +1,24 @@
-﻿请面试者用C++实现这个INI解析器
+﻿## Introduction ##
+
+- 该程序实现了一个INI解析器，可以用来直接解析内存数据和磁盘文件
+- 默认session为""
+- 支持根据session查询
+- 支持session, key, value的的头尾去空格和制位符
+- 相同的key位于后面的值会覆盖前面的值
+- 由于自带的Makefile没有问题，所以没有修改Makefile
+
+## Environment ##
+
+- ubuntu 14.04
+- g++ (Ubuntu 4.8.4-2ubuntu1~14.04.3) 4.8.4
+
+
+
+
+
+
+
+请面试者用C++实现这个INI解析器
 
 这个INI解析器可以直接解析内存数据和磁盘文件。
 举个简单例子：
